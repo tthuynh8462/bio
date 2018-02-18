@@ -19,6 +19,14 @@ h2 {
   color: #3d3d3d;
 }
 
+.temper {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #FF4F5A;
+}
+
 h3 {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 8px;
@@ -336,6 +344,13 @@ a{
   font-size: 64px;
   color: #FF8B51;
   opacity: .7;
+  text-decoration: none;
+}
+
+i{
+  font-size: 64px;
+  color: #FF8B51;
+  opacity: 0.9;
   text-decoration: none;
 }
 
@@ -1330,5 +1345,52 @@ a:hover{
     transform: scale(1);
   }
 }
+
+.container2 {
+    margin: auto;
+    margin-top: 5vh;
+    width: 400px;
+    height: 500px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 100;
+    font-size: 24px;
+    color: white;
+    z-index: 200;
+    border-radius: 15px;
+}
+
+.container2 {
+    margin: auto;
+    margin-top: 5vh;
+    width: 400px;
+    height: 500px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 100;
+    font-size: 24px;
+    color: white;
+    z-index: 200;
+    border-radius: 15px;
+}
+
+#pictureContainer {
+  opacity: 0.6;
+  border-radius: 15px;
+  background-color: #0099C6;
+}
+
+.vl{
+    z-index: -10;
+    height: 115px;
+    width: 70px;
+    background-color:#0099C6;
+    float:right;
+    position:absolute;
+    bottom: 34px;
+    transition: height 2s ease-in-out; 
+
+}
+
 
 
