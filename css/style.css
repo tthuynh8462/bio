@@ -35,6 +35,14 @@ h3 {
   color: #3d3d3d;
 }
 
+.advice {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 8px;
+  font-weight: 100;
+  font-size: 36px;
+  color: #3d3d3d;
+}
+
 p {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 4px;
@@ -43,6 +51,22 @@ p {
   color: white;
   vertical-align: middle;
   text-align: center;
+}
+
+h5{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #FF4F5A;
+}
+
+h6{
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #84DCC6;
 }
 
 .polaroid {
@@ -1358,6 +1382,7 @@ a:hover{
     color: white;
     z-index: 200;
     border-radius: 15px;
+    padding: 20px;
 }
 
 .container2 {

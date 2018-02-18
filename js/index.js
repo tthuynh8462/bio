@@ -12,10 +12,13 @@
 
         eventSource.addEventListener('TemperatureSensor', function(e) {
             var parsedData = JSON.parse(e.data);
-            tempSpan = "Core: " + parsedData.coreid + " uptime: " + parsedData.data + " (h:m:s)";
-            tsSpan = "At timestamp " + parsedData.published_at;
+
+            // tempSpan = "Core: " + parsedData.coreid + " uptime: " + parsedData.data + " (h:m:s)";
+            // tsSpan = "At timestamp " + parsedData.published_at;
             var temp = (JSON.parse(parsedData.data)).TempuratureCelsius;
+            console.log("temp: " + temp);
             var humidity = (JSON.parse(parsedData.data)).Humidity;
+            console.log(humidity);
 		    $('.vl').css({
 		      height: 115 + (275 * (temp/40)) + 'px'
 		      //background: 'rgb(' + (255 * (height - 115)/390) + ',' + 0 +',' + 0 + ')'
@@ -35,6 +38,10 @@
 
 		$('.fa').on('mouseover', function () {
 		    $(".highlight").css('visibility','visible');
+		   	$(".text1").css('visibility','visible');
+		   	$(".text2").css('visibility','visible');
+		   	$(".text3").css('visibility','visible');
+		   	$(".text4").css('visibility','visible');
 		    $(".highlight2").css('visibility','visible');
 		    $(".highlight3").css('visibility','visible');
 		});  
@@ -42,33 +49,30 @@
 		    $(".highlight2").css('visibility','hidden');
 		    $(".highlight").css('visibility','hidden');
 		    $(".highlight3").css('visibility','hidden');
+		   	$(".text1").css('visibility','hidden');
+		   	$(".text2").css('visibility','hidden');
+		   	$(".text3").css('visibility','hidden');
+		   	$(".text4").css('visibility','hidden');
 		}); 
 
 		$('.meter').on('mouseover', function () {
-		    document.getElementById("temper").innerHTML = temp + "%";
+		    document.getElementById("temper").innerHTML = Math.round(temp*100)/100 + "°C";
+		    document.getElementById("humid2").innerHTML = Math.round(humidity*100)/100 + "%";
 		});  
 		$('.meter').on('mouseout', function () {
 		   	document.getElementById("temper").innerHTML = "";
-
-		}); 
-
-		$('.plant-pot').on('mouseover', function () {
-		    document.getElementById("humid").innerHTML = humidity + "°C";
-		});  
-		$('.plant-pot').on('mouseout', function () {
-		   	document.getElementById("humidity").innerHTML = "";
-
+		   	document.getElementById("humid2").innerHTML = "";
 		}); 
 
 
-        }, false);
-
-        eventSource.addEventListener('SoilSensor', function(e) {
+eventSource.addEventListener('SoilSensor', function(e) {
+        	console.error(e.data)
             var parsedData = JSON.parse(e.data);
             tempSpan = "Core: " + parsedData.coreid + " uptime: " + parsedData.data + " (h:m:s)";
             tsSpan = "At timestamp " + parsedData.published_at;
             var soilTemp = (JSON.parse(parsedData.data).SoilTemperatureCelsius);
-            console.error(soilTemp)
+            var soilHumidity = (JSON.parse(parsedData.data).SoilHumidity);
+            console.log(soilHumidity);
             //document.getElementById('soil').innerHTML = soilTemp;
             // var soilTemp = (JSON.parse(parsedData.data)).SoilTempuratureCelsius
             // console.error(soilTemp)
@@ -76,34 +80,30 @@
 
             // document.getElementById('temp').innerHTML = temp;
 
-        }, false);  
- 	
-		$('.fa').on('mouseover', function () {
-		    $(".highlight").css('visibility','visible');
-		    $(".highlight2").css('visibility','visible');
-		    $(".highlight3").css('visibility','visible');
-		});  
-		$('.fa').on('mouseout', function () {
-		    $(".highlight2").css('visibility','hidden');
-		    $(".highlight").css('visibility','hidden');
-		    $(".highlight3").css('visibility','hidden');
-		}); 
-
-		$('.meter').on('mouseover', function () {
-		    document.getElementById("temper").innerHTML = 24.6 + "%";
-		});  
-		$('.meter').on('mouseout', function () {
-		   	document.getElementById("temper").innerHTML = "";
-
-		}); 
-
 		$('.plant-pot').on('mouseover', function () {
-		    document.getElementById("humid").innerHTML = 2.8 + "°C";
+			document.getElementById("humid").innerHTML = Math.round(soilHumidity*100)/100 + "%";
+		    document.getElementById("soiltemp").innerHTML = Math.round(soilTemp*100)/100 + "°C";
 		});  
 		$('.plant-pot').on('mouseout', function () {
 		   	document.getElementById("humid").innerHTML = "";
+		    document.getElementById("soiltemp").innerHTML = "";
 
 		});
+
+		if(soilHumidity <= 25.0){
+			document.getElementById("advice").innerHTML = "water your plants.";
+		}
+		else if((soilHumidity > 25)&&(soilHumidity <= 65.0)){
+			document.getElementById("advice").innerHTML = "perfect amount of water.";
+		}
+		else{
+			document.getElementById("advice").innerHTML = "there's too much water.";
+		}
+
+        }, false);
+
+        }, false);  
+ 	
 
 $('.sun').on('mouseover', function () {
   $.getJSON("https://api.openweathermap.org/data/2.5/forecast/daily?q=" + "Calgary" + "&mode=json&units=metric&cnt=10&APPID=c65c40d6dd6409c43978f71b7abe3a6f", function (data) {
