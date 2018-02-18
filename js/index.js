@@ -90,10 +90,10 @@ eventSource.addEventListener('SoilSensor', function(e) {
 
 		});
 
-		if(soilHumidity <= 25.0){
+		if(soilHumidity <= 45.0){
 			document.getElementById("advice").innerHTML = "water your plants.";
 		}
-		else if((soilHumidity > 25)&&(soilHumidity <= 65.0)){
+		else if((soilHumidity > 45)&&(soilHumidity <= 65.0)){
 			document.getElementById("advice").innerHTML = "perfect amount of water.";
 		}
 		else{
